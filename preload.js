@@ -30,3 +30,6 @@ contextBridge.exposeInMainWorld('electron', {
       .save(outputPath);
   }
 });
+
+console.log(getVideoTitle)
+console.log("--- ^^^ Video Title ^^^")
