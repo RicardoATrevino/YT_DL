@@ -1,7 +1,8 @@
+
 const ytdl = require('ytdl-core');
 const fs = require('fs');
 const ffmpeg = require('fluent-ffmpeg');
-const { remote, ipcRenderer, dialog } = require('electron');
+const { ipcRenderer } = require('electron');
 
 
 
@@ -31,22 +32,13 @@ function convertToMp3(inputPath, outputPath) {
     });
   
     if (url && filePath) {
-      const videoPath = filePath.replace('.mp3', '.mp4');
+      const videoPath = filePath.replace('.mp4', '.mp3');
       downloadVideo(url, videoPath);
       convertToMp3(videoPath, filePath);
     }
   });
 
-  const { dialog } = require('@electron/remote');
 
-// Trigger this when the user wants to download the file
-const savePath = dialog.showSaveDialogSync({
-  title: 'Save MP3',
-  defaultPath: 'downloaded.mp3', // Suggested file name
-  filters: [
-    { name: 'MP3 Files', extensions: ['mp3'] }
-  ]
-});
 
 if (savePath) {
   console.log(`File will be saved to: ${savePath}`);
